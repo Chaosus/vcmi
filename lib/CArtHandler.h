@@ -25,6 +25,7 @@ class CArtifactSet;
 class CArtifactInstance;
 class CRandomGenerator;
 class CMap;
+class JsonSerializeFormat;
 
 #define ART_BEARER_LIST \
 	ART_BEARER(HERO)\
@@ -324,7 +325,8 @@ public:
 	si32 getArtTypeId(ArtifactPosition pos) const;
 
 	virtual ArtBearer::ArtBearer bearerType() const = 0;
-	virtual ~CArtifactSet() = default;
+	virtual void putArtifact(ArtifactPosition pos, CArtifactInstance * art) = 0;
+	virtual ~CArtifactSet();
 
 	template <typename Handler> void serialize(Handler &h, const int version)
 	{
@@ -333,10 +335,15 @@ public:
 
 	void artDeserializationFix(CBonusSystemNode *node);
 
+	void serializeJsonArtifacts(JsonSerializeFormat & handler, const std::string & fieldName, CMap * map);
 protected:
-	void writeJson(JsonNode & json) const;
-	void readJson(const JsonNode & json);
 
-protected:
+
 	std::pair<const CCombinedArtifactInstance *, const CArtifactInstance *> searchForConstituent(int aid) const;
+private:
+	void serializeJsonHero(JsonSerializeFormat & handler, CMap * map);
+	void serializeJsonCreature(JsonSerializeFormat & handler, CMap * map);
+	void serializeJsonCommander(JsonSerializeFormat & handler, CMap * map);
+
+	void serializeJsonSlot(JsonSerializeFormat & handler, const ArtifactPosition & slot, CMap * map);//normal slots
 };

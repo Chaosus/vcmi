@@ -42,6 +42,9 @@ public:
 	/// animation file that should be used to display object
 	std::string animationFile;
 
+	/// map editor only animation file
+	std::string editorAnimationFile;
+
 	/// string ID, equals to def base name for h3m files (lower case, no extension) or specified in mod data
 	std::string stringID;
 
@@ -86,6 +89,10 @@ public:
 	{
 		h & usedTiles & allowedTerrains & animationFile & stringID;
 		h & id & subid & printPriority & visitDir;
+		if(version >= 770)
+		{
+			h & editorAnimationFile;
+		}
 	}
 };
 

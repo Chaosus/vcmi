@@ -64,7 +64,8 @@ ObjectTemplate::ObjectTemplate(const ObjectTemplate& other):
 	id(other.id),
 	subid(other.subid),
 	printPriority(other.printPriority),
-	animationFile(other.animationFile)
+	animationFile(other.animationFile),
+	editorAnimationFile(other.editorAnimationFile)
 {
 	//default copy constructor is failing with usedTiles this for unknown reason
 
@@ -81,6 +82,7 @@ ObjectTemplate & ObjectTemplate::operator=(const ObjectTemplate & rhs)
 	subid = rhs.subid;
 	printPriority = rhs.printPriority;
 	animationFile = rhs.animationFile;
+	editorAnimationFile = rhs.editorAnimationFile;
 
 	usedTiles.clear();
 	usedTiles.resize(rhs.usedTiles.size());
@@ -217,6 +219,7 @@ void ObjectTemplate::readMap(CBinaryReader & reader)
 void ObjectTemplate::readJson(const JsonNode &node, const bool withTerrain)
 {
 	animationFile = node["animation"].String();
+	editorAnimationFile = node["editorAnimation"].String();
 
 	const JsonVector & visitDirs = node["visitableFrom"].Vector();
 	if (!visitDirs.empty())
@@ -289,6 +292,7 @@ void ObjectTemplate::readJson(const JsonNode &node, const bool withTerrain)
 void ObjectTemplate::writeJson(JsonNode & node, const bool withTerrain) const
 {
 	node["animation"].String() = animationFile;
+	node["editorAnimation"].String() = editorAnimationFile;
 
 	if(visitDir != 0x0 && isVisitable())
 	{

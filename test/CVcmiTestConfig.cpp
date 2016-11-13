@@ -33,7 +33,7 @@ CVcmiTestConfig::CVcmiTestConfig()
 	loadDLLClasses();
 	logGlobal->info("Initialized global test setup.");
 
-	const std::string TEST_DATA_DIR = "test/";
+	const std::string TEST_DATA_DIR = "test/testdata/";
 
 	auto loader = new CFilesystemLoader("test/", TEST_DATA_DIR);
 	dynamic_cast<CFilesystemList*>(CResourceHandler::get())->addLoader(loader, false);

@@ -53,7 +53,7 @@ namespace NSecondarySkill
 		"sorcery",      "resistance",   "firstAid"
 	};
 
-	const std::string levels [4] =
+	const std::vector<std::string> levels =
 	{
 	    "none", "basic", "advanced", "expert"
 	};
@@ -87,7 +87,7 @@ namespace ETownType
 
 namespace NArtifactPosition
 {
-	const std::string names [19] =
+	const std::string namesHero [19] =
 	{
 		"head", "shoulders", "neck", "rightHand", "leftHand", "torso", //5
 		"rightRing", "leftRing", "feet", //8
@@ -95,6 +95,17 @@ namespace NArtifactPosition
 		"mach1", "mach2", "mach3", "mach4", //16
 		"spellbook", "misc5" //18
 	};
+
+	const std::string namesCreature[1] =
+	{
+		"creature1"
+	};
+
+	const std::string namesCommander[6] =
+	{
+		"commander1", "commander2", "commander3", "commander4", "commander5", "commander6",
+	};
+
 
 	const std::string backpack = "backpack";
 }

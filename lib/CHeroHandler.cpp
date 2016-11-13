@@ -281,6 +281,7 @@ CHeroHandler::CHeroHandler()
 	for (int i = 0; i < GameConstants::SKILL_QUANTITY; ++i)
 	{
 		VLC->modh->identifiers.registerObject("core", "skill", NSecondarySkill::names[i], i);
+		VLC->modh->identifiers.registerObject("core", "secondarySkill", NSecondarySkill::names[i], i);
 	}
 	loadObstacles();
 	loadTerrains();
